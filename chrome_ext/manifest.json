@@ -9,3 +9,9 @@
    }
  , "default_locale" : "en"
  , "icons" : { "128" : "icon_128.png" }
+ , "content_scripts" : [
+   {
+	     "css" : ["chat_style.css"]
+     , "js" : ["chat.js"]
+	 }]
+}

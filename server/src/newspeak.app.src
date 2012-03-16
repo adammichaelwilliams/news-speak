@@ -1,0 +1,12 @@
+{application, newspeak,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { newspeak_app, []}},
+  {env, []}
+ ]}.

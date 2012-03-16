@@ -1,5 +1,5 @@
 #! /usr/bin/env escript
-%%! -pa ./ebin
+%%! -pa ./ebin ./erlang-json-eep-parser
 
 -mode(compile).
 -compile(export_all).

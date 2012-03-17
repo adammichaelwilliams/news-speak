@@ -12,8 +12,8 @@
  , "content_scripts" : [
    {
      "matches": ["http://*/*"]
-    ,"run_at" : "document_idel"
+    ,"run_at" : "document_idle"
     , "css": ["css/chatroom.css"]	    
-    , "js" : ["js/jquery.js", "js/elastic.js", "js/helpers.js", "js/content.js", "common.js", "stemmer.js" ,"fox_scrape.js"]
+    , "js" : ["js/jquery.js", "js/elastic.js", "js/helpers.js", "js/content.js", "js/common.js", "js/stemmer.js" ,"js/scrape.js"]
    }]  
 }

@@ -105,6 +105,8 @@ function attach_listeners()
 
 	wsocket.on("list.return", function(data) {
 		can_say = true;
+		var msg = data.userlist.length + " users are in this room";
+		say_respond(msg, "System", sys_pic, null);
 	});
 
 	wsocket.on("say.return", function(data_) {

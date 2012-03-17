@@ -3,16 +3,29 @@
     var common = {};
     var res = {};
 
-    CommonWords = CommonWords.map(stemmer);
+     CommonWords = CommonWords.map(stemmer);
 
-    html = $("h1").html()
-		if(html) {
-			html = html.trim();
-			while (html[0] == "<")
-			html = html.split(">")[1];
-		} else {
-			html = window.document.title;
-		}
+     html = $("h1").html()
+     try
+     {
+	 if(html) {
+	     html = html.trim();
+	     while (html[0] == "<")
+	     {
+		 html = html.split(">")[1];
+		 html = html.split("<")[0];
+	     }
+	 } else {
+	     html = window.document.title;
+	 }
+	 if(!html){
+	     html = window.document.title;
+	 }
+     }
+     catch(e)
+     {
+	 html = window.document.title;
+     }
 
     var titles = html.split(" ");
     titles = titles.map(stemmer);

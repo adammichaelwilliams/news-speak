@@ -13,6 +13,9 @@ port.onMessage.addListener(function(msg_) {
 			if(query_) { join_room(); }
 		}
 		break;
+	case "list":
+		
+		break;
 	default:
 		break;
 	}
@@ -54,8 +57,13 @@ function append_msg(handle, msg_, pic, fbid)
 
 	var message = document.createElement("span");
 	message.setAttribute("class", "nsp_content");
-  var msg = "<a href = 'http://www.facebook.com/addfriend.php?id="; 
-	msg += (fbid + "' target='_blank'>" + handle + "</a>: " + msg_);
+  if(fbid !== null) {
+		var msg = "<a href = 'http://www.facebook.com/addfriend.php?id="; 
+		msg += (fbid + "' target='_blank'>" + handle + "</a>: " + msg_);
+	} else {
+		var msg = handle + ": " + msg_;
+	}
+
 	message.innerHTML = msg;
         
 	comment.appendChild(name);

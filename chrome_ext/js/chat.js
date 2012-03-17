@@ -99,11 +99,10 @@ NewsSpeakTransport.prototype.close = function()
 	this._ws.close();
 }
 
-function ws_test() {
+function ws_test(join_data) {
 	var transport = new NewsSpeakTransport("141.212.203.50:81");	
 
 	// Join a room
-	var join_data = {title: "Hello World!",	keywords:["rat", "cat","bat"], url:""};
 	transport.emit("join", join_data);
 
 	// Result of a room join

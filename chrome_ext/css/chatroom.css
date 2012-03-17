@@ -1,27 +1,31 @@
-#nsp_wrapper div, ul, li, span, textarea, h4{
+#nsp_wrapper div,#nsp_wrapper ul,#nsp_wrapper li,#nsp_wrapper span,#nsp_wrapper textarea,#nsp_wrapper h4{
     font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
-    margin: 0px;
-    padding: 0px;
+    width:300px;
+    float:left;
+    font-size: 12px !important;
+    font-style: none;
 }
-#nsp_wrapper h4{
+#nsp_wrapper ul{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+#nsp_title{
+    margin: 0;
+    padding: 0;
     padding-left:3px;
     line-height:2em;
-    width:268px;
-    float:left
+    width:268px !important;
+    color: #f6f6f6;
 }
 #nsp_wrapper{
   	background: #FFF;
 	margin:0;
   	padding:0;
-	width: 300px;
+	width: 301px;
 	bottom: 0px;
 	right: 20px;
 	position: fixed;
     font-size: 12px;
-}
-#nsp_wrapper div, #nsp_wrapper li{
-    width:300px;
-    float:left;
 }
 #nsp_toolbar{
 	border-top: 1px solid #057de4;
@@ -58,7 +62,7 @@
     list-style-type: none;
 }
 .nsp_comment{
-	margin-top:3px;
+	margin-top:5px ;
 	line-height: 1.4em;
     float:left;
 }
@@ -69,7 +73,7 @@
 	float: left;
 }
 .nsp_name {
-	width: 30px;
+	width: 30px !important;
 	height: 30px;
 	background-size: 30px 30px;
 	box-shadow: 0 0 1px;
@@ -78,25 +82,26 @@
     cursor: pointer;
 }
 .nsp_content{
-    width: 257px;
+    width: 257px !important;
 	padding-left: 5px;
 }
 #nsp_input{
-	height: 14px;
-	padding-bottom: 5px !important;
-	padding-top: 5px !important;   
-  border-left: 1px solid;
-  border-right: 1px solid;
-  border-top: 1px solid;
-  border-color: #b1afaf;
-  -moz-box-shadow: 0 0 5px #bebcbc;
-  -webkit-box-shadow: 0 0 5px #bebcbc;
-  box-shadow: 0 0 5px #bebcbc;
+    margin:0;
+    padding:0;
+	padding-bottom: 5px;
+	padding-top: 5px;   
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-top: 1px solid;
+    border-color: #b1afaf;
+    -moz-box-shadow: 0 0 5px #bebcbc;
+    -webkit-box-shadow: 0 0 5px #bebcbc;
+    box-shadow: 0 0 5px #bebcbc;
 }
-#nsp_input textarea{
+#nsp_text_input{
     float:left;
     resize:none;
-    width:282px;
+    width:280px !important;
     outline:none;
     border: 0px;
 }

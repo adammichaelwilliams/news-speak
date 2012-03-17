@@ -14,6 +14,7 @@
 % Description: Starts the server.
 start_link() ->
     register(manager, spawn_link(fun() -> roomManager:start()end)),
+    register(urlHash, spawn_link(fun() -> urlHash:start()end)),    
     gen_server:start_link(?MODULE, [], []).
 % ============================ /\ API ======================================================================
 

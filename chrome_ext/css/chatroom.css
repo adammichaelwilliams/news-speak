@@ -2,13 +2,15 @@
     font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
     width:300px;
     float:left;
+    color: black !important;
     font-size: 12px !important;
     font-style: none;
     text-align: left;
 }
-#nsp_wrapper ul{
+#nsp_wrapper ul, #nsp_wrapper li{
     margin: 0 !important;
     padding: 0 !important;
+    background-image: none !important;
 }
 #nsp_title{
     margin: 0;
@@ -16,7 +18,6 @@
     padding-left:3px;
     line-height:2em;
     width:268px !important;
-    color: #f6f6f6;
 }
 #nsp_wrapper{
   	background: #FFF;
@@ -60,7 +61,7 @@
 	
 }
 #nsp_comment_list{
-    list-style-type: none;
+    display:block;
 }
 .nsp_comment{
 	margin-top:5px ;
@@ -68,9 +69,9 @@
     float:left;
 }
 .nsp_comment span{
-  text-align: left;
+    text-align: left;
 	margin-top:3px;
-  margin-bottom:3px;
+    margin-bottom:3px;
 	display: block;
 	float: left;
 }
@@ -86,6 +87,8 @@
 .nsp_content{
     width: 257px !important;
 	padding-left: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 #nsp_input{
     margin:0;
@@ -104,8 +107,9 @@
     float:left;
     resize:none;
     width:280px !important;
-    outline:none;
+    outline:none !important;
     border: 0px;
+    background-image: none !important;
 }
 #nsp_promt{
 	padding-right: 3px;

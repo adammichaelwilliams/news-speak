@@ -7,9 +7,10 @@
     font-style: none;
     text-align: left;
 }
-#nsp_wrapper ul{
+#nsp_wrapper ul, #nsp_wrapper li{
     margin: 0 !important;
     padding: 0 !important;
+    background-image: none !important;
 }
 #nsp_title{
     margin: 0;
@@ -60,7 +61,7 @@
 	
 }
 #nsp_comment_list{
-    list-style-type: none;
+    display:block;
 }
 .nsp_comment{
 	margin-top:5px ;
@@ -68,9 +69,9 @@
     float:left;
 }
 .nsp_comment span{
-  text-align: left;
+    text-align: left;
 	margin-top:3px;
-  margin-bottom:3px;
+    margin-bottom:3px;
 	display: block;
 	float: left;
 }

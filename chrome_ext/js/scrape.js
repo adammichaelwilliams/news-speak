@@ -24,6 +24,11 @@
 			    return element.toLowerCase();
 			}
 		       );
+    titles = titles.map(function(element)
+			{
+			    return element.replace(/,/g,"");
+			}
+		       );    
     titles = titles.filter(function(element)
 			   {
 			       return !(CommonWords.indexOf(element) >= 0);

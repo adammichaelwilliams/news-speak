@@ -31,9 +31,9 @@ loop(UserList)->
 	{askJoin, WaiterPid}->
 	    WaiterPid ! {assigned, self(), get(topic), get(url)},
 	    loop(UserList);
-	{join, WaiterPid, {FBID, Name}}->
+	{join, WaiterPid, {FBID, Name, URL}}->
 	    WaiterPid ! {joined},
-	    sysToAll(UserList, <<"join">>, [{fbid, FBID}, {name, Name}]),
+	    sysToAll(UserList, <<"join">>, [{fbid, FBID}, {name, Name}, {url, URL}]),
 	    loop([{WaiterPid, FBID, Name}|UserList]);
 	{userList, WaiterPid} ->
 	    WaiterPid ! {userList, UserList},

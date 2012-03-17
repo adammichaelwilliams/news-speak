@@ -5,7 +5,7 @@ var can_init = false;
 port.onMessage.addListener(function(msg_) {
 	switch(msg_.path) {
 	case "msg":
-		append_msg(msg_.data.name, msg_.data.msg, msg_.data.pic);
+	    append_msg(msg_.data.name, msg_.data.msg, msg_.data.pic, msg_.data.fbid);
 	break;
 	case "fb":
 		if(msg_.data.fbid) {
@@ -40,7 +40,7 @@ function send_msg(data_)
 	}
 }
 
-function append_msg(handle, msg, pic)
+function append_msg(handle, msg, pic, fbid)
 {
 	var comments = document.getElementById("nsp_comment_list");
 
@@ -54,8 +54,9 @@ function append_msg(handle, msg, pic)
 
 	var message = document.createElement("span");
 	message.setAttribute("class", "nsp_content");
+        msg = "<a href = 'http://www.facebook.com/addfriend.php?id='" + fbid + "' target='_blank'>" + handle + "</a>: " + msg
 	message.innerHTML = msg;
-
+        
 	comment.appendChild(name);
 	comment.appendChild(message);
 

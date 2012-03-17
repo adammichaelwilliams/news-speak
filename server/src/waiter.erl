@@ -10,12 +10,13 @@ handle_websocket(Ws, RoomID)->
 	    case binary_to_list(Method) of
 		"join"->
 		    [{_Data, { [{_Title,Title}, {_Keywords, Keywords}, {_URL, URL}] }}] = Rest,
+		    put(url, URL),
 		    manager!{self(), {join, {binary_to_list(Title),
 					     list_binary_to_list(Keywords),
 					     binary_to_list(URL)}}};
 		"fb"->
 		    [{_Data, { [{_FBID,FBID}, {_NAME, Name}] }}] = Rest,
-		    RoomID ! {join, self(), {FBID, Name}};
+		    RoomID ! {join, self(), {FBID, Name, get(url)}};
 		"list"->
 		    RoomID ! {userList, self()};
 		"say"->

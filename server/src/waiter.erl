@@ -19,8 +19,8 @@ handle_websocket(Ws, RoomID)->
 		"list"->
 		    RoomID ! {userList, self()};
 		"say"->
-		    [{_Data, { [{_FBID,FBID}, {_NAME, Name}, {_MSG, Msg}] }}] = Rest,
-		    RoomID ! {say, FBID, Name, Msg}
+		    [{_Data, { [{_MSG, Msg}] }}] = Rest,
+		    RoomID ! {say, self(), Msg}
 	    end,
 	    handle_websocket(Ws, RoomID);
 	{assigned, NewRoomID, Title, URL}->

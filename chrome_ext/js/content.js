@@ -6,6 +6,7 @@ document.body.innerHTML += [
 	, '<span id="nsp_minimize" style="color: #f6f6f6 !important;" class="nsp_toolbar_btn">_</span>'
 	, '<span id="nsp_close" style="color: #f6f6f6 !important; visibility:hidden;" class="nsp_toolbar_btn">X</span>'
 	, '</div>'
+	, '<div id="nsp_body">'
 	, '<div id="nsp_conversation">'
 	, '<ul id="nsp_comment_list" style="list-style-type: none !important;">'
 	, '<li class="nsp_comment">'
@@ -17,6 +18,7 @@ document.body.innerHTML += [
 	, '<div id="nsp_input">'
 	, '<div id="nsp_promt">&gt;</div>'
 	, '<textarea id="nsp_text_input" rows="1" style="margin:0;padding:0;"></textarea>'
+	, '</div>'
 	, '</div>'
 	, '</div>'
 	, '</div>'
@@ -50,16 +52,13 @@ $("#nsp_text_input").keydown(function(e) {
 
 var nsp_min = false;
 $("#nsp_minimize").click(function(){
-        if(!min){
-            $("#nsp_conversation").hide('slow', function(){
-                $("#nsp_minimize").text('+');
-            });
-            $("#nsp_input").hide();
+    $("#nsp_body").slideToggle('fast', function(){
+        if(!nsp_min){
+            $("#nsp_minimize").text('+');
             nsp_min = true;
         }else{
-            $("#nsp_conversation").show('slow');
-            $("#nsp_input").show();
             $("#nsp_minimize").text('_');
             nsp_min = false;
         }
+    });
 });

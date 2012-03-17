@@ -1,0 +1,119 @@
+#nsp_wrapper div,#nsp_wrapper ul,#nsp_wrapper li,#nsp_wrapper span,#nsp_wrapper textarea,#nsp_wrapper h4{
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    width:300px;
+    float:left;
+    color: black !important;
+    font-size: 12px !important;
+    font-style: none;
+    text-align: left;
+}
+#nsp_wrapper ul, #nsp_wrapper li{
+    margin: 0 !important;
+    padding: 0 !important;
+    background-image: none !important;
+}
+#nsp_title{
+    margin: 0;
+    padding: 0;
+    padding-left:3px;
+    line-height:2em;
+    width:268px !important;
+}
+#nsp_wrapper{
+  	background: #FFF;
+	margin:0;
+  	padding:0;
+	width: 301px;
+	bottom: 0px;
+	right: 20px;
+	position: fixed;
+    font-size: 12px;
+}
+#nsp_toolbar{
+	border-top: 1px solid #057de4;
+	border-left: 1px solid #057de4;
+	border-right: 1px solid #057de4;
+	cursor: pointer;
+    color: #f6f6f6;
+    height:25px;
+    background-color: #79b5fb;
+    -moz-box-shadow: 0 0 1px #c5c3c3;
+    -webkit-box-shadow: 0 0 1px #c5c3c3;
+    box-shadow: 0 0 1px #c5c3c3;
+}
+.nsp_toolbar_btn{
+    margin-left:2.5px;
+    margin-right:2.5px;
+    cursor:pointer;
+    line-height: 2em;
+    width:9px !important;
+    float:left;
+}
+#nsp_conversation{
+	border-left: 1px solid;
+	border-right: 1px solid;
+	border-color: #b1afaf;
+    height:210px;
+    overflow-y:auto;
+	-moz-box-shadow: 0 0 5px #bebcbc;
+	-webkit-box-shadow: 0 0 5px #bebcbc;
+	box-shadow: 0 0 5px #bebcbc;
+	
+}
+#nsp_comment_list{
+    display:block;
+}
+.nsp_comment{
+	margin-top:5px ;
+	line-height: 1.4em;
+    float:left;
+}
+.nsp_comment span{
+    text-align: left;
+	margin-top:3px;
+    margin-bottom:3px;
+	display: block;
+	float: left;
+}
+.nsp_name {
+	width: 30px !important;
+	height: 30px;
+	background-size: 30px 30px;
+	box-shadow: 0 0 1px;
+	margin-left: 5px;
+	margin-right: 3px;
+    cursor: pointer;
+}
+.nsp_content{
+    width: 257px !important;
+	padding-left: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+#nsp_input{
+    margin:0;
+    padding:0;
+	padding-bottom: 5px;
+	padding-top: 5px;   
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-top: 1px solid;
+    border-color: #b1afaf;
+    -moz-box-shadow: 0 0 5px #bebcbc;
+    -webkit-box-shadow: 0 0 5px #bebcbc;
+    box-shadow: 0 0 5px #bebcbc;
+}
+#nsp_text_input{
+    float:left;
+    resize:none;
+    width:280px !important;
+    outline:none !important;
+    border: 0px;
+    background-image: none !important;
+}
+#nsp_promt{
+	padding-right: 3px;
+    text-align:right !important;
+    width:15px !important;
+}
+

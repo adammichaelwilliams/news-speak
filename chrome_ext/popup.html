@@ -1,5 +1,30 @@
+<html>
+<head></head>
+<body>
+	<script>
+		
+		var appID = "305239899542726";
+    var path = 'https://www.facebook.com/dialog/oauth?';
+    var queryParams = ['client_id=' + appID,
+        ('redirect_uri='+'https://www.facebook.com/connect/login_success.html'),
+        'response_type=token'];
+    var query = queryParams.join('&');
+    var url = path + query;
+
+		alert(injector.toString());
+		chrome.tabs.executeScript(null, {code: injector.toString()});
+
+	</script>
+</body>
+</html>
+
+
+
+
 <script>
 
+
+/*
 function displayUser(user) {
    var userName = document.getElementById('userName');
    var greetingText = document.createTextNode('Greetings, '
@@ -68,5 +93,5 @@ chrome.extension.onConnect.addListener(function(port) {
 });
 
 
-
+*/
 </script>

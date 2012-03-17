@@ -27,7 +27,7 @@ function messageHandler(msg_)
 		wsocket.emit("join", msg_.data);
 		break;
 	case "say":
-		wsocket.emit("say", {fbid: fbid_, name: handle_, msg: msg_.data});
+		wsocket.emit("say", {msg: msg_.data});
 		break;
 	default:
 		break;

@@ -59,3 +59,16 @@ $("#nsp_minimize").click(function(){
         }
     });
 });
+$("#nsp_title").click(function(){
+    $("#nsp_body").slideToggle('fast', function(){
+        if(!nsp_min){
+            $("#nsp_minimize").text('+');
+            nsp_min = true;
+        }else{
+            $("#nsp_minimize").text('_');
+            nsp_min = false;
+            var conv = $("#nsp_conversation");
+            conv.scrollTop(conv.prop("scrollHeight"));
+        }
+    });
+});

@@ -3,7 +3,7 @@ document.body.innerHTML += [
 	  '<div id="nsp_wrapper" style="z-index:1000000001;">'
 	, '<div id="nsp_chatroom">'
 	, '<div id="nsp_toolbar">'
-	, '<h4 id="nsp_title">Room Title</h4>'
+	, '<h4 id="nsp_title" style="color: #f6f6f6 !important;">Room Title</h4>'
 	, '<span id="nsp_minimize" class="nsp_toolbar_btn">_</span>'
 	, '<span id="nsp_close" class="nsp_toolbar_btn">X</span>'
 	, '</div>'

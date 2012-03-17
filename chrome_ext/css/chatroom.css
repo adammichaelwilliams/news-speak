@@ -2,6 +2,7 @@
     font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
     width:300px;
     float:left;
+    color: black !important;
     font-size: 12px !important;
     font-style: none;
     text-align: left;
@@ -16,7 +17,6 @@
     padding-left:3px;
     line-height:2em;
     width:268px !important;
-    color: #f6f6f6;
 }
 #nsp_wrapper{
   	background: #FFF;
@@ -86,6 +86,8 @@
 .nsp_content{
     width: 257px !important;
 	padding-left: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 #nsp_input{
     margin:0;

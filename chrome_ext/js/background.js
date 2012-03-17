@@ -9,6 +9,9 @@ var room = {};
 var port;
 var wsocket;
 
+var sys_pic = chrome.extension.getURL("icon.png");
+console.log(sys_pic);
+
 chrome.browserAction.onClicked.addListener(function(tab) {
 		var appID = "305239899542726";
     var path = 'https://www.facebook.com/dialog/oauth?';
@@ -36,11 +39,13 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 							port.postMessage({path: "fb", data: {fbid: fbid_}});
 						}
 				});
+				chrome.tabs.remove(tab.id);
 			}
 		});
 });
 
 chrome.extension.onConnect.addListener(function(port_) {
+	console.log("A");
 	if(!wsocket && !port) {	
 		wsocket = new NewsSpeakTransport("141.212.203.50:81");
 		(port = port_).onMessage.addListener(messageHandler);
@@ -87,6 +92,18 @@ function attach_listeners()
 		wsocket.emit("list");
 	});
 
+	wsocket.on("sys", function(data) {
+		switch(data.cmd) {
+		case "join":
+			var msg = "Joined from <a href='"+data.arg.url+"'>this article</a>"; 
+			say_respond(msg, data.arg.name, sys_pic, data.arg.fbid);
+			break;
+		case "leave":
+			
+			break;
+		}
+	});
+
 	wsocket.on("list.return", function(data) {
 		can_say = true;
 		console.log(data);
@@ -104,7 +121,7 @@ function attach_listeners()
 				, success: function(data) {
 						console.log(data);
 						room[data_.fbid] = {picture: data.picture};
-						say_respond(data_.msg, data_.name, data.picture);
+						say_respond(data_.msg, data_.name, data.picture, data_.fbid);
 					}
 			});
 		} else {

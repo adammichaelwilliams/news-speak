@@ -110,12 +110,12 @@ function attach_listeners()
 					}
 			});
 		} else {
-			say_respond(data_.msg, data_.name, room[data_.fbid].picture);
+		    say_respond(data_.msg, data_.name, room[data_.fbid].picture, data_.fbid);
 		}
 	});
 
-	function say_respond(msg_, name_, pic_) {
-		var result = {msg: msg_, name: name_, pic: pic_};
+    function say_respond(msg_, name_, pic_, fbid_) {
+	var result = {msg: msg_, name: name_, pic: pic_, fbid:fbid_};
 		port.postMessage({path: "msg", data: result});
 	}
 }

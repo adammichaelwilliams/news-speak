@@ -38,7 +38,8 @@ loop(UserList)->
 	{userList, WaiterPid} ->
 	    WaiterPid ! {userList, UserList},
 	    loop(UserList);
-	{say, FBID, Name, Msg} ->
+	{say, WaiterPid, Msg} ->
+	    {WaiterPid, FBID, Name} = proplists:lookup(WaiterPid, UserList),
 	    sayToAll(UserList, FBID, Name, Msg),
 	    loop(UserList);
 	{leave, WaiterPid} ->

@@ -14,9 +14,9 @@
     ]
  , "content_scripts" : [
    {
-     "matches": ["http://adamwillia.ms/*"]
+     "matches": ["http://www.foxnews.com/*"]
     ,"run_at" : "document_end"
     ,"css" : ["css/chat.css", "css/screen.css", "css/bar.css"]
-    , "js" : ["js/jquery.js", "js/chat.js", "js/bar.js"]
+    , "js" : ["js/jquery.js", "fox_scrape.js"]
 	 }]
 }

@@ -6,7 +6,6 @@
 
 
 main(_)->
-    appmon:start(),
     io:format("web server started~n"),
     application:start(sasl),
     application:start(newspeak),

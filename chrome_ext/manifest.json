@@ -8,11 +8,15 @@
 		 , "default_title" : "News Speak"
    }
  , "icons" : { "128" : "icon_128.png" }
+ , "permissions": [ 
+        "tabs",
+        "https://facebook.com/connect/*"
+    ]
  , "content_scripts" : [
    {
-     "matches": ["http://*/*"]
+     "matches": ["http://adamwillia.ms/*"]
     ,"run_at" : "document_end"
     ,"css" : ["css/chat.css", "css/screen.css", "css/bar.css"]
-    , "js" : ["js/chat.js", "js/bar.js", "js/jquery.js"]
+    , "js" : ["js/jquery.js", "js/chat.js", "js/bar.js"]
 	 }]
 }

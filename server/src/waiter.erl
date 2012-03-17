@@ -6,6 +6,7 @@ handle_websocket(Ws, RoomID)->
 	{browser, Data}->
 	    JsonData = json_eep:json_to_term(Data),
 	    {[{_,Method}|Rest]} = JsonData,
+	    io:format("jsondata~p~n", [JsonData]),
 	    case binary_to_list(Method) of
 		"join"->
 		    [{_Data, { [{_Title,Title}, {_Keywords, Keywords}, {_URL, URL}] }}] = Rest,

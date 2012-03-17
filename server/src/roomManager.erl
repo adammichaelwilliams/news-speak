@@ -28,23 +28,33 @@ checkRoomlist([Room|RoomList], Title, Keywords, URL, {Acc1, Acc2}) ->
 loop(RoomList)->
     receive
 	{WaiterPid, {join, {Title, Keywords, URL}}}->
-	    {MatchValue, RoomPid} = checkRoomlist(RoomList, Title, Keywords, URL),
-	    if
-		MatchValue > 0 ->
-		    RoomPid ! {askJoin, WaiterPid},
-		    loop(RoomList);
-		true ->
-		    %%spawn new room
-		    io:format("spawning a new room"),
-		    NewRoomPid = spawn(fun() -> room:start(Title, Keywords, URL) end),
-		    NewRoomPid ! {askJoin, WaiterPid},
-		    loop([NewRoomPid|RoomList])
+	    io:format("joined~n"),
+	    urlHash ! {lookup, URL},
+	    receive
+		R ->
+		    case R of
+			[] ->
+			    {MatchValue, RoomPid} = checkRoomlist(RoomList, Title, Keywords, URL),
+			    if
+				MatchValue > 0 ->
+				    RoomPid ! {askJoin, WaiterPid},
+				    urlHash ! {insert, URL, RoomPid},
+				    loop(RoomList);
+				true ->
+				    io:format("spawning a new room"),
+				    NewRoomPid = spawn(fun() -> room:start(Title, Keywords, URL) end),
+				    NewRoomPid ! {askJoin, WaiterPid},
+				    urlHash ! {insert, URL, NewRoomPid},
+				    loop([NewRoomPid|RoomList])
+			    end;
+			[{URL, RoomID}]->
+			    io:format("url hash hits~n"),
+			    RoomID ! {askJoin, WaiterPid},
+			    loop(RoomList)
+			end
 	    end;
 	{RoomPid, detach} ->
 	    NewList = lists:delete(RoomList, RoomPid),
 	    io:format("room detached:~p~n",[RoomPid]),
 	    loop(NewList)
     end.
-
-
-

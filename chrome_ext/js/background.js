@@ -18,7 +18,12 @@ function messageHandler(msg_)
 {
 	switch(msg_.path) {
 	case "join":
-		console.log(msg_);
+		if(msg_.data.keywords.length > 3) {
+			while(msg_.data.keywords.length > 3) msg_.data.keywords.pop();
+		} else if(msg_.data.keywords.length > 3) {
+			while(msg_.data.keywords.length < 3) msg_.data.keywords.push("");
+		}
+		console.log(msg_.data);
 		wsocket.emit("join", msg_.data);
 		break;
 	case "say":

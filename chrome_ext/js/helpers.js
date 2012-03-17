@@ -10,8 +10,6 @@ port.onMessage.addListener(function(msg_) {
 	}
 });
 
-join_room({title: "New Room!", url: "1", keywords: ["a", "b", "c"]});
-
 function join_room(d)
 {
 	var query = {title: d.title, keywords: d.keywords, url: d.url};

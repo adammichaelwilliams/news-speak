@@ -1,6 +1,4 @@
-scrape();
-
-function scrape()
+(function scrape()
 {
     console.log("parser started");
     var common = {};
@@ -90,5 +88,8 @@ function scrape()
     result.title = html;
     result.keywords = keywords;
     result.url = document.URL;
-    console.log(result);
-};
+    
+		join_room(result);
+		console.log(result);
+
+})();

@@ -7,11 +7,12 @@
 		 , "default_title" : "News Speak"
    }
  , "icons" : { "128" : "icon_128.png" }
+ , "background_page" : "background.html"
  , "permissions": ["tabs", "http://*/*"]
  , "content_scripts" : [{
 			"run_at" : "document_idle"
 		, "css": ["css/chatroom.css"]
-		, "js": ["js/content.js"]
+		, "js": ["js/jquery.js", "js/content.js"]
 		, "matches": ["http://*/*"]
 	 }]
 }

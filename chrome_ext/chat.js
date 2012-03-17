@@ -63,8 +63,9 @@ NewsSpeakTransport.prototype.emit = function(method_, data_)
 {
 	// Incase we send before we know the result of the connect
 	if(this._ws.readyState === 0) {return this._retry(method_, data_);}
-	else if(this._ws.readyState !== 1) return;
+	else if(this._ws.readyState !== 1) return false;
 
+	if(data_ === undefined) { data_ = {} };
 	try {
 		var msg = {method: method_, data: data_};
 		this._ws.send(JSON.stringify(msg));
@@ -93,16 +94,50 @@ NewsSpeakTransport.prototype.get_state = function()
 	}
 }
 
+NewsSpeakTransport.prototype.close = function() 
+{
+	this._ws.close();
+}
+
 function ws_test() {
 	var transport = new NewsSpeakTransport("141.212.203.50:81");	
 
 	// Join a room
-	var join_data = {title: "Hello World!",	keywords:["rat", "cat","bat"]};
-	transport.emit("room.join", join_data);
+	var join_data = {title: "Hello World!",	keywords:["rat", "cat","bat"], url:""};
+	transport.emit("join", join_data);
 
 	// Result of a room join
 	transport.on("join.return", function(data) 
 	{
+		transport.emit("fb", {fbid: "12345", name: "Max"});
+	});
+
+	transport.on("fb.return", function(data) {
+		if(data.result === "ok") {
+			transport.emit("list");
+		}
+	});
+
+	transport.on("list.return", function(data) {
+		console.log(data);
+		transport.emit("say", {fbid: 12345, name: "Max", msg: "Hello World!"});
+	});
+
+	transport.on("sys", function(data) {
+		switch(data.cmd) {
+		case "join":
+			console.log("User Joined", data.arg);
+			break;
+		case "leave":
+			console.log("User Left", data.arg);
+			break;
+		default:
+			break;
+		}
+	})
+
+	transport.on("say.return", function(data) {
 		console.log(data);
 	});
+
 }

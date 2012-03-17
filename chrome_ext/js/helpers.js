@@ -1,3 +1,8 @@
+function send_msg(msg)
+{
+	append_msg("Name", msg);
+}
+
 function append_msg(handle, msg)
 {
 	var comments = document.getElementById("nsp_comment_list");

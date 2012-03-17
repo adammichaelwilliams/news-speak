@@ -67,8 +67,9 @@
     float:left;
 }
 .nsp_comment span{
-    margin-top:3px;
-    margin-bottom:3px;
+  text-align: left;
+	margin-top:3px;
+  margin-bottom:3px;
 	display: block;
 	float: left;
 }

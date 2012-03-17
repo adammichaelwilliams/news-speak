@@ -37,7 +37,7 @@ $("#nsp_text_input").keyup(function(e) {
 	if(e.keyCode === 16) {
 		shift_state = false;	
 	} else if(e.keyCode === 13 && !shift_state) {
-		//send_msg($("#nsp_text_input").val());
+		send_msg($("#nsp_text_input").val());
 		$("#nsp_text_input").val("");
 		$("#nsp_test_input").height(new_height);
 		$("#nsp_input").height(new_height);

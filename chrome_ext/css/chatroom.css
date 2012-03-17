@@ -4,6 +4,7 @@
     float:left;
     font-size: 12px !important;
     font-style: none;
+    text-align: left;
 }
 #nsp_wrapper ul{
     margin: 0 !important;
@@ -107,7 +108,7 @@
 }
 #nsp_promt{
 	padding-right: 3px;
-    text-align:right;
+    text-align:right !important;
     width:15px !important;
 }
 

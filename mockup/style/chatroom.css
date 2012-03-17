@@ -1,25 +1,43 @@
-div, ul, li, span, textarea  {
+div, ul, li, span, textarea, h4{
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
     margin: 0px;
     padding: 0px;
 }
 #wrapper{
     margin:0;
     padding:0;
-	width: 200px;
-    height: 280px;
+	width: 300px;
+	bottom: 0px;
+	right: 20px;
+	position: fixed;
     font-size: 12px;
 }
 #wrapper div,li{
-    width:200px;
+    width:300px;
     float:left;
 }
 #chatroom{
-    height:280px;
     border: 1px solid #057de4;
 }
 #toolbar{
+	cursor: pointer;
+    color: #f6f6f6;
     height:25px;
     background-color: #79b5fb;
+}
+h4{
+    padding-left:3px;
+    line-height:2em;
+    width:268px;
+    float:left
+}
+.toolbar_btn{
+    margin-left:2.5px;
+    margin-right:2.5px;
+    cursor:pointer;
+    line-height:2em;
+    width:9px !important;
+    float:left;
 }
 #conversation{
     height:210px;
@@ -29,21 +47,44 @@ div, ul, li, span, textarea  {
     list-style-type: none;
 }
 .comment{
-    
+	line-height: 1.4em;
     float:left;
 }
+.comment span{
+    margin-top:3px;
+    margin-bottom:3px;
+	display: block;
+	float: left;
+}
+.name {
+	width: 30px;
+	height: 30px;
+	background: url('../img/test.jpg') no-repeat;
+	background-size: 30px 30px;
+	box-shadow: 0 0 1px;
+	margin-left: 5px;
+	margin-right: 3px;
+    cursor: pointer;
+}
+.content{
+    width: 257px;
+	padding-left: 5px;
+}
 #input{
-    height: 14px;
+	padding-bottom: 5px;
+	padding-top: 5px;
     border-top: 1px black solid;
+	border-color: #b0abab;
 }
 #input textarea{
     float:left;
     resize:none;
-    width:185px;
+    width:282px;
     outline:none;
     border: 0px;
 }
 #promt{
+	padding-right: 3px;
     text-align:right;
     width:15px !important;
 }

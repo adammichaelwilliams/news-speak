@@ -28,7 +28,7 @@ jQuery.fn.autoGrow = function(maxHeight){
             if(linesCount>=max){
                 obj.rows = max;
             }
-            else if (linesCount >= rowsDefault){
+            else if (linesCount > rowsDefault){
                 obj.rows = linesCount + 1;
             }   
             else
@@ -52,7 +52,6 @@ jQuery.fn.autoGrow = function(maxHeight){
         }
         
         // Manipulations
-        this.style.height = "auto";
         this.onkeyup = grow;
         this.onfocus = grow;
         this.onblur = grow;

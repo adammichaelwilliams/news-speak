@@ -4,7 +4,7 @@
 -behaviour(supervisor).
 
 %% API
--export([start_link/0]).
+-export([start_link/1]).
 
 %% Supervisor callbacks
 -export([init/1]).
@@ -16,13 +16,22 @@
 %% API functions
 %% ===================================================================
 
-start_link() ->
-    supervisor:start_link({local, ?MODULE}, ?MODULE, []).
+start_link(Options) ->
+    supervisor:start_link(?MODULE, [Options]).
 
 %% ===================================================================
 %% Supervisor callbacks
 %% ===================================================================
 
-init([]) ->
-    {ok, { {one_for_one, 5, 10}, []} }.
+init([Options]) ->
+    io:format("supervisor initialized~n"),
+    MisultinSpecs = {misultin,
+		     {misultin, start_link, [Options]},
+		     permanent, infinity, supervisor, [newspeak]
+		    },
+    ServerSpecs = {utility_server,
+		   {utility_server, start_link, []},
+		   permanent, 60000, worker, [utility_server]
+		  },
+    {ok, {{one_for_one, 5, 30}, [MisultinSpecs, ServerSpecs]}}.    
 

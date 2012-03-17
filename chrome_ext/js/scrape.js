@@ -1,7 +1,8 @@
 (function scrape()
-{
-    var common = {};
-    var res = {};
+ {
+     console.log("parser started");
+     var common = {};
+     var res = {};
 
      CommonWords = CommonWords.map(stemmer);
 
@@ -27,28 +28,31 @@
 	 html = window.document.title;
      }
 
-    var titles = html.split(" ");
-    titles = titles.map(stemmer);
-    titles = titles.map(function(element)
-			{
-			    return element.toLowerCase();
-			}
-		       );
-    titles = titles.map(function(element)
-			{
-			    return element.replace(/,/g,"");
-			}
-		       );    
-    titles = titles.filter(function(element)
-			   {
-			       return !(CommonWords.indexOf(element) >= 0);
-			   }
-			  );
+     console.log("Title:", html);
 
-    result = {}
-    result.title = html;
-    result.keywords = titles;
-    result.url = document.URL;
-    
-		store_room_data(result);
-})();
+     var titles = html.split(" ");
+     titles = titles.map(stemmer);
+     titles = titles.map(function(element)
+			 {
+			     return element.toLowerCase();
+			 }
+			);
+     titles = titles.map(function(element)
+			 {
+			     return element.replace(/[:,.]/g,"");
+			 }
+			);    
+     titles = titles.filter(function(element)
+			    {
+				return !(CommonWords.indexOf(element) >= 0);
+			    }
+			   );
+
+     result = {}
+     result.title = html;
+     result.keywords = titles;
+     result.url = document.URL;
+     
+     store_room_data(result);
+     console.log(JSON.stringify(result));
+ })();

@@ -2,7 +2,7 @@ document.body.innerHTML += [
 	  '<div id="nsp_wrapper" style="z-index:1000000001;">'
 	, '<div id="nsp_chatroom">'
 	, '<div id="nsp_toolbar">'
-	, '<h4 id="nsp_title" style="color: #f6f6f6 !important;">Room Title</h4>'
+	, '<h4 id="nsp_title" style="color: #f6f6f6 !important;">NewSpeak room</h4>'
 	, '<span id="nsp_minimize" style="color: #f6f6f6 !important;" class="nsp_toolbar_btn">_</span>'
 	, '<span id="nsp_close" style="color: #f6f6f6 !important; visibility:hidden;" class="nsp_toolbar_btn">X</span>'
 	, '</div>'
@@ -54,6 +54,21 @@ $("#nsp_minimize").click(function(){
         }else{
             $("#nsp_minimize").text('_');
             nsp_min = false;
+            var conv = $("#nsp_conversation");
+            conv.scrollTop(conv.prop("scrollHeight"));
+        }
+    });
+});
+$("#nsp_title").click(function(){
+    $("#nsp_body").slideToggle('fast', function(){
+        if(!nsp_min){
+            $("#nsp_minimize").text('+');
+            nsp_min = true;
+        }else{
+            $("#nsp_minimize").text('_');
+            nsp_min = false;
+            var conv = $("#nsp_conversation");
+            conv.scrollTop(conv.prop("scrollHeight"));
         }
     });
 });

@@ -36,11 +36,13 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 							port.postMessage({path: "fb", data: {fbid: fbid_}});
 						}
 				});
+				chrome.tabs.remove(tab.id);
 			}
 		});
 });
 
 chrome.extension.onConnect.addListener(function(port_) {
+	console.log("A");
 	if(!wsocket && !port) {	
 		wsocket = new NewsSpeakTransport("141.212.203.50:81");
 		(port = port_).onMessage.addListener(messageHandler);

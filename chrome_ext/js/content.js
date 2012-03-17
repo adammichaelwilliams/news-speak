@@ -54,6 +54,8 @@ $("#nsp_minimize").click(function(){
         }else{
             $("#nsp_minimize").text('_');
             nsp_min = false;
+            var conv = $("#nsp_conversation");
+            conv.scrollTop(conv.prop("scrollHeight"));
         }
     });
 });

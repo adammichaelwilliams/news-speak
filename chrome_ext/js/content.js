@@ -1,9 +1,9 @@
 
 document.body.innerHTML += [
-	  '<div id="nsp_wrapper">'
+	  '<div id="nsp_wrapper" style="z-index:1000000001;">'
 	, '<div id="nsp_chatroom">'
 	, '<div id="nsp_toolbar">'
-	, '<h4>Room Title</h4>'
+	, '<h4 id="nsp_title">Room Title</h4>'
 	, '<span id="nsp_minimize" class="nsp_toolbar_btn">_</span>'
 	, '<span id="nsp_close" class="nsp_toolbar_btn">X</span>'
 	, '</div>'
@@ -17,7 +17,7 @@ document.body.innerHTML += [
 	, '</div>'
 	, '<div id="nsp_input">'
 	, '<div id="nsp_promt">&gt;</div>'
-	, '<textarea id="nsp_text_input" rows="1"></textarea>'
+	, '<textarea id="nsp_text_input" rows="1" style="margin:0;padding:0;"></textarea>'
 	, '</div>'
 	, '</div>'
 	, '</div>'

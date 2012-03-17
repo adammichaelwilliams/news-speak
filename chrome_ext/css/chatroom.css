@@ -1,63 +1,74 @@
-div, ul, li, span, textarea, h4{
+#nsp_wrapper div, ul, li, span, textarea, h4{
     font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
     margin: 0px;
     padding: 0px;
 }
-#wrapper{
-  background: #FFF;
+#nsp_wrapper h4{
+    padding-left:3px;
+    line-height:2em;
+    width:268px;
+    float:left
+}
+#nsp_wrapper{
+  	background: #FFF;
 	margin:0;
-  padding:0;
+  	padding:0;
 	width: 300px;
 	bottom: 0px;
 	right: 20px;
 	position: fixed;
     font-size: 12px;
 }
-#wrapper div,li{
+#nsp_wrapper div, #nsp_wrapper li{
     width:300px;
     float:left;
 }
-#chatroom{
-    border: 1px solid #057de4;
-}
-#toolbar{
+#nsp_toolbar{
+	border-top: 1px solid #057de4;
+	border-left: 1px solid #057de4;
+	border-right: 1px solid #057de4;
 	cursor: pointer;
     color: #f6f6f6;
     height:25px;
     background-color: #79b5fb;
+    -moz-box-shadow: 0 0 1px #c5c3c3;
+    -webkit-box-shadow: 0 0 1px #c5c3c3;
+    box-shadow: 0 0 1px #c5c3c3;
 }
-h4{
-    padding-left:3px;
-    line-height:2em;
-    width:268px;
-    float:left
-}
-.toolbar_btn{
+.nsp_toolbar_btn{
     margin-left:2.5px;
     margin-right:2.5px;
     cursor:pointer;
-    line-height:2em;
+    line-height: 2em;
     width:9px !important;
     float:left;
 }
-#conversation{
+#nsp_conversation{
+	border-left: 1px solid;
+	border-right: 1px solid;
+	border-color: #b1afaf;
     height:210px;
     overflow-y:auto;
+	-moz-box-shadow: 0 0 5px #bebcbc;
+	-webkit-box-shadow: 0 0 5px #bebcbc;
+	box-shadow: 0 0 5px #bebcbc;
+	
 }
-#comment_list{
+#nsp_comment_list{
     list-style-type: none;
 }
-.comment{
+.nsp_comment{
+	margin-top:3px;
 	line-height: 1.4em;
     float:left;
 }
-.comment span{
+.nsp_comment span{
     margin-top:3px;
     margin-bottom:3px;
 	display: block;
 	float: left;
 }
-.name {
+.nsp_name {
 	width: 30px;
 	height: 30px;
 	background-size: 30px 30px;
@@ -66,24 +77,30 @@ h4{
 	margin-right: 3px;
     cursor: pointer;
 }
-.content{
+.nsp_content{
     width: 257px;
 	padding-left: 5px;
 }
-#input{
-	padding-bottom: 5px;
-	padding-top: 5px;
-    border-top: 1px black solid;
-	border-color: #b0abab;
+#nsp_input{
+	height: 14px;
+	padding-bottom: 5px !important;
+	padding-top: 5px !important;   
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-top: 1px solid;
+  border-color: #b1afaf;
+  -moz-box-shadow: 0 0 5px #bebcbc;
+  -webkit-box-shadow: 0 0 5px #bebcbc;
+  box-shadow: 0 0 5px #bebcbc;
 }
-#input textarea{
+#nsp_input textarea{
     float:left;
     resize:none;
     width:282px;
     outline:none;
     border: 0px;
 }
-#promt{
+#nsp_promt{
 	padding-right: 3px;
     text-align:right;
     width:15px !important;

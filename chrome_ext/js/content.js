@@ -1,4 +1,3 @@
-var port = chrome.extension.connect();
 document.body.innerHTML += [
 	  '<div id="nsp_wrapper" style="z-index:1000000001;">'
 	, '<div id="nsp_chatroom">'
@@ -48,7 +47,4 @@ $("#nsp_text_input").keydown(function(e) {
 	if(e.keyCode === 16) {
 		shift_state = true;
 	}
-
 });
-
-append_msg("Max Seiden", "Hello World!");

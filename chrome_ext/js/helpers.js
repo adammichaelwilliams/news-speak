@@ -1,6 +1,19 @@
-function send_msg(msg)
+var port = chrome.extension.connect();
+
+port.postMessage({path: "join"});
+
+port.onMessage.addListener(function(msg) {
+	append_msg(msg.handle, msg.msg);
+});
+
+function join_room(data_)
 {
-	append_msg("Name", msg);
+	port.postMessage({path: "join", data: data_});
+}
+
+function send_msg(msg) 
+{
+	port.postMessage(msg);
 }
 
 function append_msg(handle, msg)

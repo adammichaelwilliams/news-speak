@@ -25,7 +25,7 @@ loop(UserList)->
 	{getMatchValue, _Title, Keywords}->
 	    S1 = sets:from_list(get(keywords)),
 	    S2 = sets:from_list(Keywords),
-	    S3 = intersection(Set1, Set2),
+	    S3 = sets:intersection(S1, S2),
 	    manager ! {self(), sets:size(S3)},
 	    loop(UserList);
 	{askJoin, WaiterPid}->

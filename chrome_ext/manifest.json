@@ -14,9 +14,10 @@
     ]
  , "content_scripts" : [
    {
-     "matches": ["http://www.foxnews.com/*"]
+     "matches": ["http://*/*"]
     ,"run_at" : "document_end"
     ,"css" : ["css/chat.css", "css/screen.css", "css/bar.css"]
-    , "js" : ["js/jquery.js", "fox_scrape.js"]
+    , "js" : ["js/jquery.js", "stemmer.js" ,"fox_scrape.js", "common.js"]
+    
 	 }]
 }

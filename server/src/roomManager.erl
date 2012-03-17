@@ -28,14 +28,15 @@ checkRoomlist([Room|RoomList], Title, Keywords, URL, {Acc1, Acc2}) ->
 loop(RoomList)->
     receive
 	{WaiterPid, {join, {Title, Keywords, URL}}}->
+	    io:format("joined~n"),
 	    urlHash ! {lookup, URL},
 	    receive
-		{urlHash, R} ->
+		R ->
 		    case R of
 			[] ->
 			    {MatchValue, RoomPid} = checkRoomlist(RoomList, Title, Keywords, URL),
 			    if
-				MatchValue > 1 ->
+				MatchValue > 0 ->
 				    RoomPid ! {askJoin, WaiterPid},
 				    urlHash ! {insert, URL, RoomPid},
 				    loop(RoomList);
@@ -47,6 +48,7 @@ loop(RoomList)->
 				    loop([NewRoomPid|RoomList])
 			    end;
 			[{URL, RoomID}]->
+			    io:format("url hash hits~n"),
 			    RoomID ! {askJoin, WaiterPid},
 			    loop(RoomList)
 			end
@@ -56,6 +58,3 @@ loop(RoomList)->
 	    io:format("room detached:~p~n",[RoomPid]),
 	    loop(NewList)
     end.
-
-
-

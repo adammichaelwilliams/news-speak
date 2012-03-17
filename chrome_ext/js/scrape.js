@@ -6,13 +6,17 @@
 
     CommonWords = CommonWords.map(stemmer);
 
-    
-
     html = $("h1").html()
-    html = html.trim();
-    while (html[0] == "<")
-	html = html.split(">")[1];
-    
+		if(html) {
+			html = html.trim();
+			while (html[0] == "<")
+			html = html.split(">")[1];
+		} else {
+			html = window.document.title;
+		}
+
+		console.log("Title:", html);
+
     var titles = html.split(" ");
     titles = titles.map(stemmer);
     titles = titles.map(function(element)
@@ -32,6 +36,5 @@
     result.url = document.URL;
     
 		store_room_data(result);
-		console.log(result);
-
+		console.log(JSON.stringify(result));
 })();

@@ -12,7 +12,7 @@ var wsocket;
 var sys_pic = chrome.extension.getURL("icon.png");
 console.log(sys_pic);
 
-chrome.browserAction.onClicked.addListener(function(tab) {
+chrome.browserAction.onClicked.addListener(function(tab_o) {
 		var appID = "305239899542726";
     var path = 'https://www.facebook.com/dialog/oauth?';
     var queryParams = ['client_id=' + appID,
@@ -21,9 +21,10 @@ chrome.browserAction.onClicked.addListener(function(tab) {
     var query = queryParams.join('&');
     var url_ = path + query;
 
-		chrome.tabs.create({index: tab.index+1, url: url_});
+		chrome.tabs.create({index: tab_o.index+1, url: url_});
 		chrome.tabs.onUpdated.addListener(function(id, change, tab) {
 			if(change.status === "complete" && tab.title === "Success") {
+				chrome.tabs.onUpdated.removeListener();
 				var new_url = tab.url.replace(/(.+\#)/, "").split("&");
 				token_ = new_url[0].replace("access_token=", "");
 				
@@ -40,6 +41,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 						}
 				});
 				chrome.tabs.remove(tab.id);
+				chrome.tabs.update(tab_o.id, {selected:true});
 			}
 		});
 });

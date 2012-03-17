@@ -1,9 +1,44 @@
-var handle_ = "Max Seiden";
-var fbid_ = "12345"
+var handle_; 
+var fbid_;
+var token_;
 var can_say = false;
+var profile_url_;
+
+var room = {};
 
 var port;
 var wsocket;
+
+chrome.browserAction.onClicked.addListener(function(tab) {
+		var appID = "305239899542726";
+    var path = 'https://www.facebook.com/dialog/oauth?';
+    var queryParams = ['client_id=' + appID,
+        ('redirect_uri='+'https://www.facebook.com/connect/login_success.html'),
+        'response_type=token'];
+    var query = queryParams.join('&');
+    var url_ = path + query;
+
+		chrome.tabs.create({index: tab.index+1, url: url_});
+		chrome.tabs.onUpdated.addListener(function(id, change, tab) {
+			if(change.status === "complete" && tab.title === "Success") {
+				var new_url = tab.url.replace(/(.+\#)/, "").split("&");
+				token_ = new_url[0].replace("access_token=", "");
+				
+				var ajax_url = "https://graph.facebook.com/me?";
+				ajax_url += ("&access_token="+token_);
+				
+				$.ajax({
+						url: ajax_url
+					, dataType: "json"
+					, success: function(data) {
+							fbid_ = data.id;
+							handle_ = data.first_name;
+							port.postMessage({path: "fb", data: {fbid: fbid_}});
+						}
+				});
+			}
+		});
+});
 
 chrome.extension.onConnect.addListener(function(port_) {
 	if(!wsocket && !port) {	
@@ -11,6 +46,8 @@ chrome.extension.onConnect.addListener(function(port_) {
 		(port = port_).onMessage.addListener(messageHandler);
 		port.onDisconnect.addListener(disconnectHandler);
 		attach_listeners();
+		console.log(handle_, fbid_, token_);
+		port.postMessage({path: "fb", data: {fbid: fbid_}});
 	}
 });
 
@@ -23,7 +60,7 @@ function messageHandler(msg_)
 		} else if(msg_.data.keywords.length > 3) {
 			while(msg_.data.keywords.length < 3) msg_.data.keywords.push("");
 		}
-		console.log(msg_.data);
+		console.log("A", msg_.data);
 		wsocket.emit("join", msg_.data);
 		break;
 	case "say":
@@ -56,6 +93,27 @@ function attach_listeners()
 	});
 
 	wsocket.on("say.return", function(data_) {
-		port.postMessage({path: "msg", data: data_});
+		console.log(room);
+		if(!room[data_.fbid] || !room[data_.fbid].picture) {
+			var ajax_url = "https://graph.facebook.com/"+data_.fbid+"?fields=picture";
+			ajax_url += ("&access_token="+token_);
+			
+			$.ajax({
+					url: ajax_url
+				, dataType: "json"
+				, success: function(data) {
+						console.log(data);
+						room[data_.fbid] = {picture: data.picture};
+						say_respond(data_.msg, data_.name, data.picture);
+					}
+			});
+		} else {
+			say_respond(data_.msg, data_.name, room[data_.fbid].picture);
+		}
 	});
+
+	function say_respond(msg_, name_, pic_) {
+		var result = {msg: msg_, name: name_, pic: pic_};
+		port.postMessage({path: "msg", data: result});
+	}
 }

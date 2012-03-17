@@ -8,10 +8,6 @@ document.body.innerHTML += [
 	, '</div>'
 	, '<div id="nsp_conversation">'
 	, '<ul id="nsp_comment_list" style="list-style-type: none !important;">'
-	, '<li class="nsp_comment">'
- 	, '<span class="nsp_name" title="Ke Wu"></span>'
- 	, '<span class="nsp_content">hello world!  Welcome to Newspeak!</span>'
-	, '</li>'
 	, '</ul>'
 	, '</div>'
 	, '<div id="nsp_input">'
@@ -28,7 +24,6 @@ var shift_state = false;
 var new_height = 27;
 $("#nsp_test_input").height(new_height);
 $("#nsp_input").height(new_height);
-
 
 $("#nsp_text_input").keyup(function(e) {
 	$("#nsp_input").height($("#nsp_text_input").height());

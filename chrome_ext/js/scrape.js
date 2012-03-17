@@ -89,7 +89,7 @@
     result.keywords = keywords;
     result.url = document.URL;
     
-		join_room(result);
+		store_room_data(result);
 		console.log(result);
 
 })();

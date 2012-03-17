@@ -1,27 +1,46 @@
 var port = chrome.extension.connect();
+var query_;
+var can_init = false;
 
 port.onMessage.addListener(function(msg_) {
 	switch(msg_.path) {
 	case "msg":
-		append_msg(msg_.data.name, msg_.data.msg);
+		append_msg(msg_.data.name, msg_.data.msg, msg_.data.pic);
 	break;
+	case "fb":
+		if(msg_.data.fbid) {
+			can_init = true;
+			if(query_) { join_room(); }
+		}
+		break;
 	default:
 		break;
 	}
 });
 
-function join_room(d)
+function store_room_data(d)
 {
-	var query = {title: d.title, keywords: d.keywords, url: d.url};
-	port.postMessage({path: "join", data: query});
+	console.log("Data Stored");
+	query_ = {title: d.title, keywords: d.keywords, url: d.url};
+	if(can_init) {join_room();}
+}
+
+function join_room() 
+{
+	console.log("join room");
+	port.postMessage({path: "join", data: query_});
 }
 
 function send_msg(data_) 
 {
-	port.postMessage({path: "say", data: data_});
+	if(!can_init) {
+		append_msg("", "You're not logged in!");
+	} else {
+		port.postMessage({path: "say", data: data_});
+	}
 }
 
-function append_msg(handle, msg)
+function append_msg(handle, msg, pic)
 {
 	var comments = document.getElementById("nsp_comment_list");
 
@@ -29,6 +48,7 @@ function append_msg(handle, msg)
 	comment.setAttribute("class", "nsp_comment");
 
 	var name = document.createElement("span");
+	$(name).css('background-image', 'url('+pic+')');	
 	name.setAttribute("class", "nsp_name");
 	name.setAttribute("title", handle);
 
@@ -40,4 +60,7 @@ function append_msg(handle, msg)
 	comment.appendChild(message);
 
 	comments.appendChild(comment);
+
+	var conv = $("#nsp_conversation");
+	conv.scrollTop(conv.prop("scrollHeight"));
 }

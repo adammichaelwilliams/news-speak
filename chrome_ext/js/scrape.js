@@ -14,6 +14,9 @@
 		} else {
 			html = window.document.title;
 		}
+        if(!html){
+			html = window.document.title;
+        }
 
 		console.log("Title:", html);
 

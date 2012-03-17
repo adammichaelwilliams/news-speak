@@ -10,6 +10,7 @@
 #nsp_wrapper ul, #nsp_wrapper li{
     margin: 0 !important;
     padding: 0 !important;
+    list-style-image: none !important;
     background-image: none !important;
 }
 #nsp_title{

@@ -1,19 +1,26 @@
 var port = chrome.extension.connect();
 
-port.postMessage({path: "join"});
-
-port.onMessage.addListener(function(msg) {
-	append_msg(msg.handle, msg.msg);
+port.onMessage.addListener(function(msg_) {
+	switch(msg_.path) {
+	case "msg":
+		append_msg(msg_.data.name, msg_.data.msg);
+	break;
+	default:
+		break;
+	}
 });
 
-function join_room(data_)
+join_room({title: "New Room!", url: "1", keywords: ["a", "b", "c"]});
+
+function join_room(d)
 {
-	port.postMessage({path: "join", data: data_});
+	var query = {title: d.title, keywords: d.keywords, url: d.url};
+	port.postMessage({path: "join", data: query});
 }
 
-function send_msg(msg) 
+function send_msg(data_) 
 {
-	port.postMessage(msg);
+	port.postMessage({path: "say", data: data_});
 }
 
 function append_msg(handle, msg)

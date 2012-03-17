@@ -11,87 +11,10 @@
     var query = queryParams.join('&');
     var url = path + query;
 
-		alert(injector.toString());
-		chrome.tabs.executeScript(null, {code: injector.toString()});
-
+		chrome.tabs.getCurrent(function(tab) {
+			console.log(tab);
+		});
+	
 	</script>
 </body>
 </html>
-
-
-
-
-<script>
-
-
-/*
-function displayUser(user) {
-   var userName = document.getElementById('userName');
-   var greetingText = document.createTextNode('Greetings, '
-     + user.name + '.');
-    userName.appendChild(greetingText);
-}
-
-var appID = "305239899542726";
-if (window.location.hash.length == 0) {
-    var path = 'https://www.facebook.com/dialog/oauth?';
-    var queryParams = ['client_id=' + appID,
-        'redirect_uri=https://www.facebook.com/connect/login_success.html',
-        'response_type=token'];
-    var query = queryParams.join('&');
-    var url = path + query;
-    window.open(url);
- } else {
-    var accessToken = window.location.hash.substring(1);
-    var path = "https://graph.facebook.com/me?";
-    var queryParams = [accessToken, 'callback=displayUser'];
-    var query = queryParams.join('&');
-    var url = path + query;
-
-    // use jsonp to call the graph
-    var script = document.createElement('script');
-    script.src = url;
-    document.body.appendChild(script);        
-}
-
-
-chrome.tabs.onUpdated.addListener(onTabUpdated);
-
-function onTabUpdated(tabId, changeInfo, tab) {
-  if (changeInfo.url &&
-    changeInfo.url.indexOf("https://www.facebook.com/connect/login_success.html") == 0) {
-    if(accessTokenFromSuccessURL(changeInfo.url)) {
-        chrome.tabs.remove(tabId);
-    }
-    
-  }
-}
-
-function accessTokenFromSuccessURL(url) {
-var hashSplit = url.split('#');
-if (hashSplit.length > 1) {
-  var paramsArray = hashSplit[1].split('&');
-  for (var i = 0; i < paramsArray.length; i++) {
-      var paramTuple = paramsArray[i].split('=');
-      if (paramTuple.length > 1 && paramTuple[0] == 'access_token')
-        return paramTuple[1];
-  }
-}
-return null;
-}
-
-chrome.extension.onConnect.addListener(function(port) {
-  console.assert(port.name == "knockknock");
-  port.onMessage.addListener(function(msg) {
-    if (msg.joke == "Knock knock")
-      port.postMessage({question: "Who's there?"});
-    else if (msg.answer == "Madame")
-      port.postMessage({question: "Madame who?"});
-    else if (msg.answer == "Madame... Bovary")
-      port.postMessage({question: "I don't get it."});
-  });
-});
-
-
-*/
-</script>

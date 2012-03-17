@@ -18,16 +18,13 @@ var NewsSpeakTransport = window.NewsSpeakTransport = function(address)
 
 	ws.onopen = function()
 	{
-		console.log("Socket Opened");
 	}
 
 	ws.onmessage = function(msg) 
 	{
 		var data = JSON.parse(msg.data);
 		
-		console.log("Message received on '"+data.method+"'");
 		if(!route_table[data.method]) {
-			console.log("No handler for '"+data.method+"'");
 		} else {
 			route_table[data.method].call(self, data.data);
 		}
@@ -35,12 +32,10 @@ var NewsSpeakTransport = window.NewsSpeakTransport = function(address)
 
 	ws.onerror = function(err)
 	{
-		console.log("Error", err);
 	}
 
 	ws.onclose = function()
 	{
-		console.log("Socket Closed");
 	}
 
 	// Make sure that we're connected
@@ -69,9 +64,7 @@ NewsSpeakTransport.prototype.emit = function(method_, data_)
 	try {
 		var msg = {method: method_, data: data_};
 		this._ws.send(JSON.stringify(msg));
-		console.log("Sent a message on '"+method_+"'");
 	} catch(e) {
-		console.log("From NST.emit:", e);
 	}
 }
 

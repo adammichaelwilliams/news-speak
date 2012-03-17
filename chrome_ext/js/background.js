@@ -9,8 +9,7 @@ var room = {};
 var port;
 var wsocket;
 
-var sys_pic = chrome.extension.getURL("icon.png");
-console.log(sys_pic);
+var sys_pic = "http://images-1.findicons.com/files/icons/40/aqua_blend/128/location_news.png"
 
 chrome.browserAction.onClicked.addListener(function(tab_o) {
 		var appID = "305239899542726";
@@ -47,13 +46,11 @@ chrome.browserAction.onClicked.addListener(function(tab_o) {
 });
 
 chrome.extension.onConnect.addListener(function(port_) {
-	console.log("A");
 	if(!wsocket && !port) {	
 		wsocket = new NewsSpeakTransport("141.212.203.50:81");
 		(port = port_).onMessage.addListener(messageHandler);
 		port.onDisconnect.addListener(disconnectHandler);
 		attach_listeners();
-		console.log(handle_, fbid_, token_);
 		port.postMessage({path: "fb", data: {fbid: fbid_}});
 	}
 });
@@ -67,7 +64,6 @@ function messageHandler(msg_)
 		} else if(msg_.data.keywords.length > 3) {
 			while(msg_.data.keywords.length < 3) msg_.data.keywords.push("");
 		}
-		console.log("A", msg_.data);
 		wsocket.emit("join", msg_.data);
 		break;
 	case "say":
@@ -101,18 +97,17 @@ function attach_listeners()
 			say_respond(msg, data.arg.name, sys_pic, data.arg.fbid);
 			break;
 		case "leave":
-			
+			var msg = "Abandonded this topic";
+			say_respond(msg, data.arg.name, sys_pic, data.arg.fbid);
 			break;
 		}
 	});
 
 	wsocket.on("list.return", function(data) {
 		can_say = true;
-		console.log(data);
 	});
 
 	wsocket.on("say.return", function(data_) {
-		console.log(room);
 		if(!room[data_.fbid] || !room[data_.fbid].picture) {
 			var ajax_url = "https://graph.facebook.com/"+data_.fbid+"?fields=picture";
 			ajax_url += ("&access_token="+token_);
@@ -121,7 +116,6 @@ function attach_listeners()
 					url: ajax_url
 				, dataType: "json"
 				, success: function(data) {
-						console.log(data);
 						room[data_.fbid] = {picture: data.picture};
 						say_respond(data_.msg, data_.name, data.picture, data_.fbid);
 					}

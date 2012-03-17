@@ -1,6 +1,5 @@
 (function scrape()
 {
-    console.log("parser started");
     var common = {};
     var res = {};
 
@@ -14,8 +13,6 @@
 		} else {
 			html = window.document.title;
 		}
-
-		console.log("Title:", html);
 
     var titles = html.split(" ");
     titles = titles.map(stemmer);
@@ -41,5 +38,4 @@
     result.url = document.URL;
     
 		store_room_data(result);
-		console.log(JSON.stringify(result));
 })();

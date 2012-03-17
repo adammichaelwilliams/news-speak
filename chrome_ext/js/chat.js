@@ -1,6 +1,6 @@
 var NewsSpeakTransport = window.NewsSpeakTransport = function(address)
 {
-	// Silly Javascript
+	// Super silly javascript
 	var self = this;
 	
 	// Route table for message listeners
@@ -18,6 +18,7 @@ var NewsSpeakTransport = window.NewsSpeakTransport = function(address)
 
 	ws.onopen = function()
 	{
+		console.log("OPEN");
 	}
 
 	ws.onmessage = function(msg) 
@@ -32,10 +33,12 @@ var NewsSpeakTransport = window.NewsSpeakTransport = function(address)
 
 	ws.onerror = function(err)
 	{
+		console.log(err);
 	}
 
 	ws.onclose = function()
 	{
+		console.log("CLOSE");
 	}
 
 	// Make sure that we're connected
@@ -63,6 +66,7 @@ NewsSpeakTransport.prototype.emit = function(method_, data_)
 	if(data_ === undefined) { data_ = {} };
 	try {
 		var msg = {method: method_, data: data_};
+		console.log(msg);
 		this._ws.send(JSON.stringify(msg));
 	} catch(e) {
 	}

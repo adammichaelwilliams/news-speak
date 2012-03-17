@@ -21,9 +21,7 @@ chrome.extension.onConnect.addListener(function(port_) {
 			if(msg_.data.keywords.length > 3) {
 				while(msg_.data.keywords.length > 3) msg_.data.keywords.pop();
 			} else if(msg_.data.keywords.length < 3) {
-				while(msg_.data.keywords.length < 3) {
-					msg_.data.keywords.push(Math.random().toString())
-				}
+				while(msg_.data.keywords.length < 3) msg_.data.keywords.push(Math.random());
 			}
 			console.log(msg_.data);
 			wsocket.emit("join", msg_.data);

@@ -8,6 +8,7 @@ port.onMessage.addListener(function(msg_) {
 	    append_msg(msg_.data.name, msg_.data.msg, msg_.data.pic, msg_.data.fbid);
 	break;
 	case "fb":
+		console.log(msg_);
 		if(msg_.data.fbid) {
 			can_init = true;
 			if(query_) { join_room(); }
@@ -23,12 +24,14 @@ port.onMessage.addListener(function(msg_) {
 
 function store_room_data(d)
 {
+	if(query_) { return; }
 	query_ = {title: d.title, keywords: d.keywords, url: d.url};
 	if(can_init) {join_room();}
 }
 
 function join_room() 
 {
+	console.log("Join", query_);
 	port.postMessage({path: "join", data: query_});
 }
 
